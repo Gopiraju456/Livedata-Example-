@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="gopi">15dp</dimen>
+    <dimen name="raju">10dp</dimen>
+    <dimen name="gopi8">8dp</dimen>
+    <dimen name="gopi50">50dp</dimen>
+    <dimen name="gopi20dp">20dp</dimen>
+</resources>
