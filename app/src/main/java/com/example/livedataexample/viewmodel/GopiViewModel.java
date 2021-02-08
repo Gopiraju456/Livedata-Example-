@@ -16,4 +16,10 @@ public class GopiViewModel extends ViewModel {
   public LiveData<Model> getLivedata(){
         return raju.getvalues();
     }
+
+    @Override
+    protected void onCleared() {
+        super.onCleared();
+    }
 }
+

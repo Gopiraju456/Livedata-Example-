@@ -1,19 +1,18 @@
 package com.example.livedataexample.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.Observer;
+import androidx.databinding.DataBindingUtil;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ProgressBar;
 
 import com.example.livedataexample.Adapter.SourceAdapter;
 
 import com.example.livedataexample.R;
+import com.example.livedataexample.databinding.ActivityMainBinding;
 import com.example.livedataexample.models.Model;
 import com.example.livedataexample.viewmodel.GopiViewModel;
 
@@ -23,28 +22,25 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
   private   GopiViewModel gopiViewModel;
     List<Model.Sourcedata> gopiraju;
-    RecyclerView recyclerView;
     SourceAdapter sourceAdapter;
+    ActivityMainBinding binding2;
 
-    Toolbar toolbar;
-    ProgressBar bar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding2= DataBindingUtil.setContentView(this,R.layout.activity_main);
 
 
-        toolbar=findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        bar=findViewById(R.id.prograss);
-        bar.setVisibility(View.VISIBLE);
+        setSupportActionBar(binding2.toolbar);
 
 
-        recyclerView =findViewById(R.id.rl);
+        binding2.prograss.setVisibility(View.VISIBLE);
+
+
         LinearLayoutManager linearLayoutManager=new LinearLayoutManager(this);
-      recyclerView.setLayoutManager(linearLayoutManager);
+        linearLayoutManager.setOrientation(RecyclerView.VERTICAL);
+      binding2.rl.setLayoutManager(linearLayoutManager);
 
 
 
@@ -55,42 +51,23 @@ public class MainActivity extends AppCompatActivity {
         gopiraju=new ArrayList<>();
 
 
+
     }
 
     private void gopirajusjdnf() {
 
-        gopiViewModel.getLivedata().observe(this, new Observer<Model>() {
-            @Override
-            public void onChanged(Model model) {
+        gopiViewModel.getLivedata().observe(this, model ->  {
                 if (model!=null){
 
                 gopiraju= model.getGopi();
                 sourceAdapter=new SourceAdapter(MainActivity.this,gopiraju);
-                    recyclerView.setHasFixedSize(true);
-                    bar.setVisibility(View.GONE);
-                    recyclerView.setAdapter(sourceAdapter);
-                      }}
+                    binding2.rl.setHasFixedSize(true);
+                  binding2.prograss.setVisibility(View.GONE);
+                    binding2.rl.setAdapter(sourceAdapter);
+                      }
         });
 
 
-       /* ApiInaterface gopi=Apiclient.getRetrofit().create(ApiInaterface.class);
-        Call<Model>  raju=gopi.getinterface();
-        raju.enqueue(new Callback<Model>() {
-            @Override
-            public void onResponse(Call<Model> call, Response<Model> response) {
-                if (response!=null){
-                    Toast.makeText(MainActivity.this, "Gopiraju", Toast.LENGTH_SHORT).show();
-                    Log.i("$$$$$$$$$$444",response.body().toString());
-                }
-            }
-
-            @Override
-            public void onFailure(Call<Model> call, Throwable t) {
-
-            }
-        });
-
-        */
 
 
  }

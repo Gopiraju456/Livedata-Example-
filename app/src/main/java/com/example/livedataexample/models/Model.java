@@ -56,10 +56,8 @@ public class Model {
         private String name;
         @SerializedName("description")
         private  String description;
-        @SerializedName("category")
-        private String category;
-        @SerializedName("language")
-        private String language;
+        @SerializedName("url")
+        private String url;
 
 
         public String getName() {
@@ -72,11 +70,7 @@ public class Model {
 
 
         public String getCategory() {
-            return category;
-        }
-
-        public String getLanguage() {
-            return language;
+            return url;
         }
     }
 

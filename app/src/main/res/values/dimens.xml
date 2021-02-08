@@ -5,4 +5,5 @@
     <dimen name="gopi8">8dp</dimen>
     <dimen name="gopi50">50dp</dimen>
     <dimen name="gopi20dp">20dp</dimen>
+    <dimen name="gopi5dp">5dp</dimen>
 </resources>
